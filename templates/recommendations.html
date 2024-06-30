@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Movie Recommendations</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   <style>
+    body {
+    margin: 0;
+    background-image: url('../static/background2.jpg'); /* Adjust the path as necessary */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+       .container {
+           width: 80%;
+           margin: auto;
+           padding-top: 20px;
+           flex: 1;
+           padding: 20px;
+           border-radius: 10px;
+       }
+
+       .movie-list {
+           display: flex;
+           flex-direction: column;
+           gap: 20px;
+       }
+
+       .movie-card {
+           background-color: white;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+           text-align: center;
+           color: black; /* Set the text color to black */
+           width: 100%;
+       }
+
+       .movie-card img {
+           width: 100%;
+           border-radius: 10px;
+       }
+
+       .footer {
+           background-color: #333;
+           color: white;
+           text-align: center;
+           padding: 10px;
+           position: fixed;
+           bottom: 0;
+           width: 100%;
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <h1>Recommended Movies for "{{ movie }}"</h1>
+       <div class="movie-list">
+           {% for idx in range(recommended_names|length) %}
+               <div class="movie-card">
+                   <img src="{{ recommended_posters[idx] }}" alt="Movie Poster">
+                   <h3>{{ idx + 1 }}. {{ recommended_names[idx] }}</h3>
+               </div>
+           {% endfor %}
+       </div>
+   </div>
+</body>
+</html>
